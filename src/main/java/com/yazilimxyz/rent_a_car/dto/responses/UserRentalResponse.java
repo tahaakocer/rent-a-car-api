@@ -1,22 +1,20 @@
-package com.yazilimxyz.rent_a_car.dto;
+package com.yazilimxyz.rent_a_car.dto.responses;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
+import com.yazilimxyz.rent_a_car.dto.RentalDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
 import java.util.UUID;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonInclude(JsonInclude.Include.NON_NULL)
-public class UserDTO {
+public class UserRentalResponse {
+
     private UUID id;
     private String email;
     private String name;
-    private String phoneNumber;
-    private String password;
-    private String role;
     private List<RentalDTO> rentals;
 }

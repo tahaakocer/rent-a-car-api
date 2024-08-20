@@ -22,7 +22,7 @@ public class JWTService {
     private static final long EXPIRATION_TIME = 1000 * 60 * 24 * 7; //for 7 days
 
 
-    private String generateToken(UserDetails userDetails) {
+    public String generateToken(UserDetails userDetails) {
         return Jwts.builder()
                 .subject(userDetails.getUsername())
                 .issuedAt(new Date(System.currentTimeMillis()))

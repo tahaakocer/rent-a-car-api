@@ -21,6 +21,6 @@ public class VehicleDTO {
     private BigDecimal rentalPrice;
     private String vehiclePhotoUrl;
     private String vehicleDescription;
-    private List<VehicleRentalDTO> rentals;
+    private List<RentalDTO> rentals;
 }
 

@@ -20,7 +20,7 @@ public class Rental {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull(message = "checkin date is required")
+    @NotNull(message = "check in date is required")
     private LocalDate checkInDate;
 
     @Future(message = "check out date must be in the future")

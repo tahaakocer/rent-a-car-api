@@ -15,7 +15,7 @@ public class RentalDTO {
     private LocalDate checkOutDate;
     private Integer numOfDrivers;
     private String rentalConfirmationCode;
-    private RentalUserDTO user;
-    private RentalVehicleDTO vehicle;
+    private UserDTO user;
+    private VehicleDTO vehicle;
 
 }

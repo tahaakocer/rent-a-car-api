@@ -5,32 +5,22 @@ import com.yazilimxyz.rent_a_car.dto.RentalDTO;
 import com.yazilimxyz.rent_a_car.dto.UserDTO;
 import com.yazilimxyz.rent_a_car.dto.VehicleDTO;
 import com.yazilimxyz.rent_a_car.entity.enums.Role;
-import jakarta.validation.constraints.NotBlank;
-import jdk.jfr.DataAmount;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import java.util.List;
 import java.util.Set;
 
 @Data
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@AllArgsConstructor
 @NoArgsConstructor
-public class Response {
+@AllArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class LoginResponse {
     private int statusCode;
     private String message;
     private String token;
     private Set<Role> authorities;
     private String expirationTime;
-    private String bookingConfirmationCode;
-
-    private UserDTO user;
-    private VehicleDTO vehicle;
-    private RentalDTO rental;
-    private List<RentalDTO> rentals;
-    private List<VehicleDTO> vehicles;
-    private List<UserDTO> users;
-
 
 }

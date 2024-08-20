@@ -1,5 +1,6 @@
 package com.yazilimxyz.rent_a_car.repository;
 
+import com.yazilimxyz.rent_a_car.dto.UserDTO;
 import com.yazilimxyz.rent_a_car.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
