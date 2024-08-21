@@ -82,30 +82,6 @@ public class UserService implements IUserService {
             return userDtoList;
     }
 
-
-
-  /*  @Override
-    public Response getUserRentalHistory(String userId) {
-        Response response = new Response();
-        try {
-            response.setStatusCode(200);
-            User user = userRepository.findById(UUID.fromString(userId)).orElseThrow(() -> new MyException("User not found"));
-            UserDTO userDTO = UserMapper.INSTANCE.userToUserDto(user);
-
-            response.setMessage("users were successfully listed");
-        }
-        catch (MyException e){
-            response.setStatusCode(400);
-            response.setMessage("Error listing user's rentals "+ e.getMessage());
-
-        }
-        catch(Exception e) {
-            response.setStatusCode(500);
-            response.setMessage("Internal server error: " + e.getMessage());
-        }
-        return response;
-    }
-*/
     @Override
     public void deleteUser(String userId) {
        User user = this.userRepository.findById(UUID.fromString(userId)).orElseThrow(() -> new UserNotFoundException("User not found"));
