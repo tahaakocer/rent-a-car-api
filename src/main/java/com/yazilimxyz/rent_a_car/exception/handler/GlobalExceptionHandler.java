@@ -1,9 +1,6 @@
 package com.yazilimxyz.rent_a_car.exception.handler;
 
-import com.yazilimxyz.rent_a_car.exception.EmailAlreadyExistsException;
-import com.yazilimxyz.rent_a_car.exception.S3UploadImageException;
-import com.yazilimxyz.rent_a_car.exception.UserNotFoundException;
-import com.yazilimxyz.rent_a_car.exception.VehicleNotFoundException;
+import com.yazilimxyz.rent_a_car.exception.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -27,6 +24,14 @@ public class GlobalExceptionHandler {
     }
     @ExceptionHandler(VehicleNotFoundException.class)
     public ResponseEntity<String> handleVehicleNotFoundException(VehicleNotFoundException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+    @ExceptionHandler(RentalNotAvailableException.class)
+    public ResponseEntity<String> handleRentalNotAvailableException(RentalNotAvailableException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.CONFLICT);
+    }
+    @ExceptionHandler(RentalNotFoundException.class)
+    public ResponseEntity<String> handleRentalNotFoundException(RentalNotFoundException ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 }

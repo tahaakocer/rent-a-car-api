@@ -9,6 +9,6 @@ import java.util.UUID;
 @Repository
 public interface RentalRepository extends JpaRepository<Rental, Long> {
     List<Rental> findByVehicleId(Long id);
-    List<Rental> findByRentalConfirmationCode(String confirmationCode );
+    Rental findByRentalConfirmationCode(String confirmationCode);
     List<Rental> findByUserId(UUID id);
 }
