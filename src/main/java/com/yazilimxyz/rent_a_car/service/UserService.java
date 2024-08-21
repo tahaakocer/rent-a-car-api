@@ -38,13 +38,13 @@ public class UserService implements IUserService {
 
     @Override
     public UserDTO register(UserDTO userDTO) {
-        if (userRepository.existsByEmail(userDTO.getEmail())) {
+        if (this.userRepository.existsByEmail(userDTO.getEmail())) {
             throw new EmailAlreadyExistsException("Email already exists");
         }
-        userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+        userDTO.setPassword(this.passwordEncoder.encode(userDTO.getPassword()));
         User user = UserMapper.INSTANCE.userDtoToUser(userDTO);
         user.setAuthorities(new HashSet<>(Set.of(Role.ROLE_USER)));
-        User savedUser = userRepository.save(user);
+        User savedUser = this.userRepository.save(user);
 
         return UserMapper.INSTANCE.userToUserDto(savedUser);
     }
@@ -53,9 +53,9 @@ public class UserService implements IUserService {
     public LoginResponse login(UserDTO userDTO) {
         LoginResponse response = new LoginResponse();
         try{
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userDTO.getEmail(), userDTO.getPassword()));
-            User user = userRepository.findByEmail(userDTO.getEmail()).orElseThrow(() -> new MyException("User not found"));
-            var jwt = jwtService.generateToken(user);
+            this.authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userDTO.getEmail(), userDTO.getPassword()));
+            User user = this.userRepository.findByEmail(userDTO.getEmail()).orElseThrow(() -> new MyException("User not found"));
+            var jwt = this.jwtService.generateToken(user);
             response.setStatusCode(200);
             response.setToken(jwt);
             response.setAuthorities(user.getAuthorities());
@@ -76,7 +76,7 @@ public class UserService implements IUserService {
 
     @Override
     public List<UserDTO> getAllUsers() {
-            List<User> userList = userRepository.findAll();
+            List<User> userList = this.userRepository.findAll();
             List<UserDTO> userDtoList = new ArrayList<>();
             userList.forEach(user -> userDtoList.add(UserMapper.INSTANCE.userToUserDto(user)));
             return userDtoList;
