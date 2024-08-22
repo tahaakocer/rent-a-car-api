@@ -4,11 +4,12 @@ import com.yazilimxyz.rent_a_car.dto.RentalDTO;
 import com.yazilimxyz.rent_a_car.dto.UserDTO;
 import com.yazilimxyz.rent_a_car.dto.VehicleDTO;
 import com.yazilimxyz.rent_a_car.entity.Rental;
-import com.yazilimxyz.rent_a_car.entity.Vehicle;
 import com.yazilimxyz.rent_a_car.exception.RentalNotAvailableException;
 import com.yazilimxyz.rent_a_car.exception.RentalNotFoundException;
 import com.yazilimxyz.rent_a_car.repository.RentalRepository;
 import com.yazilimxyz.rent_a_car.service.interfaces.IRentalService;
+import com.yazilimxyz.rent_a_car.service.interfaces.IUserService;
+import com.yazilimxyz.rent_a_car.service.interfaces.IVehicleService;
 import com.yazilimxyz.rent_a_car.utils.mapper.RentalMapper;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -20,8 +21,8 @@ import java.util.UUID;
 @Service
 public class RentalService implements IRentalService {
     private final RentalRepository rentalRepository;
-    private final UserService userService;
-    private final VehicleService vehicleService;
+    private final IUserService userService;
+    private final IVehicleService vehicleService;
 
 
     public RentalService(RentalRepository rentalRepository, UserService userService, VehicleService vehicleService) {

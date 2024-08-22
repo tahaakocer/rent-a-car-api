@@ -2,7 +2,6 @@ package com.yazilimxyz.rent_a_car.service;
 
 import com.yazilimxyz.rent_a_car.dto.UserDTO;
 import com.yazilimxyz.rent_a_car.dto.responses.LoginResponse;
-import com.yazilimxyz.rent_a_car.dto.responses.Response;
 import com.yazilimxyz.rent_a_car.entity.User;
 import com.yazilimxyz.rent_a_car.entity.enums.Role;
 import com.yazilimxyz.rent_a_car.exception.EmailAlreadyExistsException;
@@ -44,6 +43,10 @@ public class UserService implements IUserService {
         userDTO.setPassword(this.passwordEncoder.encode(userDTO.getPassword()));
         User user = UserMapper.INSTANCE.userDtoToUser(userDTO);
         user.setAuthorities(new HashSet<>(Set.of(Role.ROLE_USER)));
+        user.setAccountNonExpired(true);
+        user.setEnabled(true);
+        user.setAccountNonLocked(true);
+        user.setCredentialsNonExpired(true);
         User savedUser = this.userRepository.save(user);
 
         return UserMapper.INSTANCE.userToUserDto(savedUser);
@@ -94,8 +97,4 @@ public class UserService implements IUserService {
         return UserMapper.INSTANCE.userToUserDto(user);
     }
 
-    @Override
-    public Response getMyInfo(String userId) {
-        return null;
-    }
 }

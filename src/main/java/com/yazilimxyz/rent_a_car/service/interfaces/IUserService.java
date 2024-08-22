@@ -4,7 +4,6 @@ import com.yazilimxyz.rent_a_car.dto.UserDTO;
 import com.yazilimxyz.rent_a_car.dto.requests.LoginRequest;
 import com.yazilimxyz.rent_a_car.dto.requests.RegisterRequest;
 import com.yazilimxyz.rent_a_car.dto.responses.LoginResponse;
-import com.yazilimxyz.rent_a_car.dto.responses.Response;
 import java.util.List;
 
 public interface IUserService {
@@ -17,5 +16,4 @@ public interface IUserService {
  //   Response getUserRentalHistory(String userId);
     void deleteUser(String userId);
     UserDTO getUserById(String userId);
-    Response getMyInfo(String userId);
 }
