@@ -39,7 +39,7 @@ public class RentalService implements IRentalService {
     }
     @Override
     public RentalDTO saveRental(Long vehicleId, UUID userId, RentalDTO rentalDTO) {
-        VehicleDTO vehicleDTO = this.vehicleService.getVehicleById(String.valueOf(vehicleId));
+        VehicleDTO vehicleDTO = this.vehicleService.getVehicleById(vehicleId);
         UserDTO userDTO = this.userService.getUserById(String.valueOf(userId));
         List<RentalDTO> existingRentals = vehicleDTO.getRentals();
         if(!vehicleIsAvailable(rentalDTO, existingRentals)) {
@@ -72,7 +72,8 @@ public class RentalService implements IRentalService {
 
     @Override
     public void deleteRental(Long rentalId) {
-        Rental rental = this.rentalRepository.findById(rentalId).orElseThrow(() -> new RentalNotFoundException("Rental not found for id: " + rentalId));
+        Rental rental = this.rentalRepository.findById(rentalId).orElseThrow(
+                () -> new RentalNotFoundException("Rental not found for id: " + rentalId));
         this.rentalRepository.delete(rental);
     }
 }

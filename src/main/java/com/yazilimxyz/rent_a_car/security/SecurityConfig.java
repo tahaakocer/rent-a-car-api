@@ -36,11 +36,15 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(request ->
                         request
-                                .requestMatchers("/auth/**").permitAll() // Auth yolları herkesin erişimine açık
-                                .requestMatchers("/users/get-all").hasRole("ADMIN") // Tüm kullanıcılar için özel izin
-                                .requestMatchers("/users/delete/**").hasRole("ADMIN") // Adminler için izin
-                                .requestMatchers("/users/**").hasAnyRole("USER", "ADMIN") // Kullanıcılar için genel izin
-                                .anyRequest().authenticated() // Diğer tüm istekler kimlik doğrulama gerektirir
+                                .requestMatchers("/auth/**").permitAll()
+                                .requestMatchers("/users/get-all").hasRole("ADMIN")
+                                .requestMatchers("/users/delete/**").hasRole("ADMIN")
+                                .requestMatchers("/users/**").hasAnyRole("USER", "ADMIN")
+                                .requestMatchers("/vehicles/add/**").hasRole("ADMIN")
+                                .requestMatchers("/vehicles/update/**").hasRole("ADMIN")
+                                .requestMatchers("/vehicles/delete/**").hasRole("ADMIN")
+                                .requestMatchers("vehicles/**").hasAnyRole("USER","ADMIN")
+                                .anyRequest().authenticated()
                 )
                 .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())

@@ -32,14 +32,16 @@ public class VehicleService implements IVehicleService {
     }
 
     @Override
-    public VehicleDTO getVehicleById(String vehicleId) {
-        Vehicle vehicle = this.vehicleRepository.findById(Long.parseLong(vehicleId)).orElseThrow(() -> new VehicleNotFoundException(vehicleId + " not found"));
+    public VehicleDTO getVehicleById(Long vehicleId) {
+        Vehicle vehicle = this.vehicleRepository.findById(vehicleId).orElseThrow(
+                () -> new VehicleNotFoundException(vehicleId + " not found"));
         return VehicleMapper.INSTANCE.vehicleToVehicleDto(vehicle);
     }
 
     @Override
-    public VehicleDTO updateVehicle(String vehicleId, VehicleDTO vehicleDTO) {
-        Vehicle vehicle = this.vehicleRepository.findById(Long.parseLong(vehicleId)).orElseThrow(() -> new VehicleNotFoundException(vehicleId + " not found"));
+    public VehicleDTO updateVehicle(Long vehicleId, VehicleDTO vehicleDTO) {
+        Vehicle vehicle = this.vehicleRepository.findById(vehicleId).orElseThrow(
+                () -> new VehicleNotFoundException(vehicleId + " not found"));
         vehicle = VehicleMapper.INSTANCE.vehicleDtoToVehicle(vehicleDTO);
         vehicle = this.vehicleRepository.save(vehicle);
         return VehicleMapper.INSTANCE.vehicleToVehicleDto(vehicle);
@@ -75,8 +77,8 @@ public class VehicleService implements IVehicleService {
     }
 
     @Override
-    public void deleteVehicle(String vehicleId) {
-        Vehicle vehicle = this.vehicleRepository.findById(Long.parseLong(vehicleId)).orElseThrow(() -> new VehicleNotFoundException(vehicleId + " not found"));
+    public void deleteVehicle(Long vehicleId) {
+        Vehicle vehicle = this.vehicleRepository.findById(vehicleId).orElseThrow(() -> new VehicleNotFoundException(vehicleId + " not found"));
         this.vehicleRepository.delete(vehicle);
     }
 }

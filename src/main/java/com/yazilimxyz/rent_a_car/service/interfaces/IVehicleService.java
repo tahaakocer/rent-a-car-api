@@ -9,11 +9,11 @@ import java.util.List;
 public interface IVehicleService {
 
     VehicleDTO addVehicle(VehicleDTO vehicleDTO);
-    VehicleDTO getVehicleById(String vehicleId);
-    VehicleDTO updateVehicle(String vehicleId, VehicleDTO vehicleDTO);
+    VehicleDTO getVehicleById(Long vehicleId);
+    VehicleDTO updateVehicle(Long vehicleId, VehicleDTO vehicleDTO);
     List<VehicleDTO> getAllVehicles();
     List<VehicleDTO> getAvailableVehicles();
     List<String> getAllVehicleTypes();
     List<VehicleDTO> getAvailableVehiclesByDateAndType(LocalDate checkInDate, LocalDate checkOutDate, String vehicleType);
-    void deleteVehicle(String vehicleId);
+    void deleteVehicle(Long vehicleId);
 }
