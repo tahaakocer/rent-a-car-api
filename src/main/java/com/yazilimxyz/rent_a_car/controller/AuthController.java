@@ -20,12 +20,12 @@ public class AuthController {
         this.userService = userService;
     }
 
-    @PostMapping(value = "/register")
+    @PostMapping("/register")
     public ResponseEntity<ApiResponse> register(@RequestBody RegisterRequest registerRequest){
         UserDTO userDTO = this.userService.register(UserMapper.INSTANCE.registerRequestToUserDto(registerRequest));
         RegisterResponse response = UserMapper.INSTANCE.userDtoToRegisterResponse(userDTO);
         return ResponseEntity.ok(ApiResponse.builder()
-                .status(200)
+                .status(201)
                 .message("registered successfully")
                 .data(response)
                 .build());

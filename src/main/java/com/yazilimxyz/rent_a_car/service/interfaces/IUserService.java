@@ -16,4 +16,5 @@ public interface IUserService {
  //   Response getUserRentalHistory(String userId);
     void deleteUser(String userId);
     UserDTO getUserById(String userId);
+    UserDTO findUserByEmail(String email);
 }

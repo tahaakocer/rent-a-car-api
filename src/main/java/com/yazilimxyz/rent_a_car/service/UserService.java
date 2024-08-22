@@ -87,13 +87,22 @@ public class UserService implements IUserService {
 
     @Override
     public void deleteUser(String userId) {
-       User user = this.userRepository.findById(UUID.fromString(userId)).orElseThrow(() -> new UserNotFoundException("User not found"));
+       User user = this.userRepository.findById(UUID.fromString(userId)).orElseThrow(
+               () -> new UserNotFoundException("User not found"));
        this.userRepository.delete(user);
     }
 
     @Override
     public UserDTO getUserById(String userId) {
-        User user = this.userRepository.findById(UUID.fromString(userId)).orElseThrow(() -> new UserNotFoundException("User not found"));
+        User user = this.userRepository.findById(UUID.fromString(userId)).orElseThrow(
+                () -> new UserNotFoundException("User not found"));
+        return UserMapper.INSTANCE.userToUserDto(user);
+    }
+
+    @Override
+    public UserDTO findUserByEmail(String email) {
+        User user = this.userRepository.findByEmail(email).orElseThrow(
+                () -> new UserNotFoundException("User not found"));
         return UserMapper.INSTANCE.userToUserDto(user);
     }
 
