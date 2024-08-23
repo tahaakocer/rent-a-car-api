@@ -14,6 +14,7 @@ import org.mapstruct.factory.Mappers;
 public interface UserMapper {
     UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
 
+    @Mapping(target = "rentals", ignore = true) // Ignore to avoid circular reference
     UserDTO userToUserDto(User user);
     UserDTO registerRequestToUserDto(RegisterRequest registerRequest);
     UserDTO loginRequestToUserDto(LoginRequest loginRequest);

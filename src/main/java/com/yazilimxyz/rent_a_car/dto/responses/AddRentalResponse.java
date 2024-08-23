@@ -1,26 +1,25 @@
-package com.yazilimxyz.rent_a_car.dto;
+package com.yazilimxyz.rent_a_car.dto.responses;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.*;
+import com.yazilimxyz.rent_a_car.dto.UserDTO;
+import com.yazilimxyz.rent_a_car.dto.VehicleDTO;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-@JsonInclude(JsonInclude.Include.NON_NULL)
-
-public class RentalDTO {
+public class AddRentalResponse {
     private Long id;
     private LocalDate checkInDate;
     private LocalDate checkOutDate;
     private Integer numOfDrivers;
     private String rentalConfirmationCode;
-    @JsonIgnore
     private UserDTO user;
-    @JsonIgnore
     private VehicleDTO vehicle;
+
 }

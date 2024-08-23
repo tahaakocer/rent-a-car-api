@@ -49,8 +49,9 @@ public class RentalService implements IRentalService {
         rentalDTO.setUser(userDTO);
         String rentalConfirmationCode = UUID.randomUUID().toString();
         rentalDTO.setRentalConfirmationCode(rentalConfirmationCode);
-        Rental rental = this.rentalRepository.save(RentalMapper.INSTANCE.rentalDtoToRental(rentalDTO));
-        return RentalMapper.INSTANCE.rentalToRentalDto(rental);
+        Rental rental = RentalMapper.INSTANCE.rentalDtoToRental(rentalDTO);
+        Rental savedRental = this.rentalRepository.save(rental);
+        return RentalMapper.INSTANCE.rentalToRentalDto(savedRental);
     }
 
     @Override

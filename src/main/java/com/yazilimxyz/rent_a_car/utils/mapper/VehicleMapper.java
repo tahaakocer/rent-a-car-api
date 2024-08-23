@@ -6,6 +6,7 @@ import com.yazilimxyz.rent_a_car.dto.responses.AddVehicleResponse;
 import com.yazilimxyz.rent_a_car.dto.responses.GetVehicleResponse;
 import com.yazilimxyz.rent_a_car.entity.Vehicle;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 @Mapper

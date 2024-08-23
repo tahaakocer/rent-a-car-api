@@ -44,6 +44,8 @@ public class SecurityConfig {
                                 .requestMatchers("/vehicles/update/**").hasRole("ADMIN")
                                 .requestMatchers("/vehicles/delete/**").hasRole("ADMIN")
                                 .requestMatchers("vehicles/**").hasAnyRole("USER","ADMIN")
+                                .requestMatchers("/rentals/get-all").hasRole( "ADMIN")
+                                .requestMatchers("/rentals/**").hasAnyRole("USER", "ADMIN")
                                 .anyRequest().authenticated()
                 )
                 .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
