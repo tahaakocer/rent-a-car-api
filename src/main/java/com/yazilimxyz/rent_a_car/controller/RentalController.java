@@ -38,7 +38,6 @@ public class RentalController {
     public ResponseEntity<ApiResponse<?>> getAllRentals() {
         List< AddRentalResponse> responses = new ArrayList<>();
         this.rentalService.getAllRentals().forEach(rentals -> responses.add(RentalMapper.INSTANCE.rentalDtoToAddRentalResponse(rentals)));
-
         return ResponseEntity.ok(ApiResponse.builder()
                         .status(200)
                         .data(responses)

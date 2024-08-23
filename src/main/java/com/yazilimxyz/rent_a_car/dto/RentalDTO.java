@@ -23,4 +23,6 @@ public class RentalDTO {
     private UserDTO user;
     @JsonIgnore
     private VehicleDTO vehicle;
+    private UUID userId;
+    private Long vehicleId;
 }

@@ -6,12 +6,17 @@ import com.yazilimxyz.rent_a_car.dto.responses.AddRentalResponse;
 import com.yazilimxyz.rent_a_car.entity.Rental;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
 
 @Mapper
 public interface RentalMapper {
 
     RentalMapper INSTANCE = Mappers.getMapper(RentalMapper.class);
+    @Mappings({
+            @Mapping(target = "vehicle", ignore = true),
+            @Mapping(target = "user", ignore = true)
+    })
     RentalDTO rentalToRentalDto(Rental rental);
     Rental rentalDtoToRental(RentalDTO rentalDTO);
     RentalDTO rentalRequestToRentalDto(AddRentalRequest addRentalRequest);

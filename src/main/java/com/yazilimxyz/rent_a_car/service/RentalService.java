@@ -68,6 +68,11 @@ public class RentalService implements IRentalService {
         List<Rental> rentals = this.rentalRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
         List<RentalDTO> rentalDTOs = new ArrayList<>();
         rentals.forEach(rental -> rentalDTOs.add(RentalMapper.INSTANCE.rentalToRentalDto(rental)));
+        rentalDTOs.forEach(rental -> {
+            rental.setVehicleId(rental.getVehicleId());
+            rental.setUserId(rental.getUserId());
+        });
+
         return rentalDTOs;
     }
 
